@@ -245,8 +245,6 @@ systemctl daemon-reload
 
 # 🌍 English Version
 
-(Kept short — edit if needed)
-
 ✅ One-command Gensyn RL-Swarm installer  
 ✅ Telegram bot remote control  
 ✅ Auto monitor & auto restart  
@@ -263,5 +261,3 @@ bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/ma
 # ❤️ Credit
 
 Built by **Deklan × GPT-5**  
-
-
