@@ -1,3 +1,5 @@
+<START>
+
 <!-- BANNER -->
 <p align="center">
   <img src="https://i.ibb.co/3zxGBM4/GENSYN-BANNER.png" width="90%" />
@@ -21,7 +23,7 @@
 
 ## 🧠 Overview
 
-Bundle ini menyediakan:
+Bundle ini menyediakan:  
 ✅ Auto-Installer Gensyn RL-Swarm  
 ✅ Telegram Control panel  
 ✅ Auto-Monitor + Auto-Restart  
@@ -31,15 +33,15 @@ Bundle ini menyediakan:
 
 > Semua bisa dikontrol tanpa SSH — cukup Telegram 📱  
 
-**Support VPS:**
-- Ubuntu 20.04 / 22.04 / 24.04
-- Debian 12
+**Support VPS:**  
+- Ubuntu 20.04 / 22.04 / 24.04  
+- Debian 12  
 
 ---
 
 ## ✨ Features
 
-✅ One-Command Installer  
+✅ One-Command Install  
 ✅ Start / Stop / Restart Node  
 ✅ CPU / RAM / Disk / Uptime Monitoring  
 ✅ Last Round tracking  
@@ -61,7 +63,7 @@ Bundle ini menyediakan:
 bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/install.sh)
 ```
 
-Installer akan:
+Installer akan:  
 ✅ Install dependencies  
 ✅ Install docker  
 ✅ Clone RL-Swarm  
@@ -107,7 +109,7 @@ Jika kurang → install akan berhenti.
 └── ...
 ```
 
-Keys otomatis disymlink ke:
+Keys otomatis:
 
 ```
 /root/rl_swarm/keys
@@ -153,9 +155,9 @@ systemctl restart bot
 
 ---
 
-# 🔧 Installer Menu (via Telegram)
+# 🔧 Installer Menu (Telegram)
 
-Action → konfirmasi → ketik `YES`
+Aksi → konfirmasi → ketik `YES`
 
 | Action | Script |
 |--------|--------|
@@ -170,7 +172,7 @@ Semua dijalankan remote → tanpa SSH.
 
 # 🛰 Auto-Monitor
 
-`monitor.timer` akan:
+`monitor.timer` akan:  
 ✅ Cek status node  
 ✅ Jika mati → restart  
 ✅ Jika gagal → reinstall  
@@ -203,7 +205,7 @@ systemctl restart gensyn
 
 # ♻ Move VPS (Pindah)
 
-1) Copy folder `/root/deklan/`
+1) Copy folder `/root/deklan/`  
 2) Jalankan:
 
 ```
@@ -245,15 +247,14 @@ AUTO_INSTALLER_GITHUB=https://raw.githubusercontent.com/deklan400/deklan-autoins
 
 # 🧨 Danger Zone
 
-> Harus aktifkan ENABLE_DANGER_ZONE=1  
-> Wajib password
+> ENABLE_DANGER_ZONE=1 + DANGER_PASS wajib
 
-Aksi yang tersedia:
-- Hapus RL-Swarm
-- Clean Docker
-- Remove Swap
-- Full Clean
-- Reboot
+Aksi tersedia:  
+- Hapus RL-Swarm  
+- Clean Docker  
+- Remove Swap  
+- Full Clean  
+- Reboot  
 
 ---
 
@@ -283,14 +284,14 @@ Aksi yang tersedia:
 
 # ✅ Sample Telegram Alerts
 
-✅ Node UP
+✅ UP
 ```
 ✅ Node UP
 CPU 23% • RAM 68% • Disk 50%
 Round: Join X
 ```
 
-🚨 Node Down
+🚨 DOWN
 ```
 🚨 DOWN — Restarting…
 ```
@@ -325,3 +326,4 @@ Ubuntu 20/22/24, Debian 12.
 
 ❤️ Built by **Deklan × GPT-5**
 
+<END>
