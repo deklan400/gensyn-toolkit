@@ -40,19 +40,25 @@ Support VPS: Ubuntu 20/22/24, Debian 12
 
 Jalankan:
 
+```bash
 bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/install.sh)
+```
 
 ---
 
 # 🔑 Identity (WAJIB)
 
 Folder:
-  /root/deklan/
+```
+/root/deklan/
+```
 
 Harus berisi:
-  swarm.pem
-  userApiKey.json
-  userData.json
+```
+swarm.pem
+userApiKey.json
+userData.json
+```
 
 Jika salah satu hilang → INSTALL STOP
 
@@ -60,6 +66,7 @@ Jika salah satu hilang → INSTALL STOP
 
 # 📁 Struktur Folder
 
+```
 /root/deklan/
   swarm.pem
   userApiKey.json
@@ -70,22 +77,28 @@ Jika salah satu hilang → INSTALL STOP
   docker-compose.yaml
   run_node.sh
   .env
+```
 
 ---
 
 # 🤖 Telegram Bot
 
 Edit setelah install:
-  nano /opt/deklan-node-bot/.env
+
+```
+nano /opt/deklan-node-bot/.env
+```
 
 Isi minimal:
-  BOT_TOKEN=YOUR_TOKEN
-  CHAT_ID=123456
+```
+BOT_TOKEN=YOUR_TOKEN
+CHAT_ID=123456
+```
 
 Restart bot:
-  systemctl restart bot
-
-Sudah siap kontrol via Telegram ✅
+```
+systemctl restart bot
+```
 
 ---
 
@@ -104,68 +117,88 @@ Sudah siap kontrol via Telegram ✅
 
 # 🔧 Installer Menu
 
-Melalui Telegram → Konfirmasi → Ketik YES
+Melalui Telegram → Konfirmasi → Ketik `YES`
 
-Install     → install.sh  
-Reinstall   → reinstall.sh  
-Update      → update.sh  
-Uninstall   → uninstall.sh  
+| Action | Script |
+|--------|--------|
+| Install | install.sh |
+| Reinstall | reinstall.sh |
+| Update | update.sh |
+| Uninstall | uninstall.sh |
 
 ---
 
 # 🛰 Auto-Monitor
 
-monitor.timer otomatis:
+`monitor.timer` otomatis:
+
 ✅ Cek node  
 ✅ Restart jika mati  
 ✅ Reinstall jika tetap fail  
 ✅ Kirim logs ke Telegram  
 
-Status
-  systemctl status monitor.timer
+Status:
+```
+systemctl status monitor.timer
+```
 
 ---
 
 # ✅ Perintah Sistem
 
 Status:
-  systemctl status gensyn
+```
+systemctl status gensyn
+```
 
 Start:
-  systemctl start gensyn
+```
+systemctl start gensyn
+```
 
 Restart:
-  systemctl restart gensyn
+```
+systemctl restart gensyn
+```
 
 Logs:
-  journalctl -u gensyn -f
+```
+journalctl -u gensyn -f
+```
 
 ---
 
 # 🔄 Migrasi VPS
 
 Copy folder:
+```
 /root/deklan/
+```
 
 Install ulang:
+```
 bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/install.sh)
+```
 
-Done ✅
+Selesai ✅
 
 ---
 
 # ❌ Uninstall
 
+```
 systemctl stop gensyn
 systemctl disable gensyn
 rm -f /etc/systemd/system/gensyn.service
 rm -rf /root/rl_swarm
 systemctl daemon-reload
+```
 
 ---
 
 # 🧩 ENV Full Options
 
+```
 BOT_TOKEN=
 CHAT_ID=
 ALLOWED_USER_IDS=
@@ -176,12 +209,13 @@ MONITOR_EVERY_MINUTES=180
 ENABLE_DANGER_ZONE=0
 DANGER_PASS=
 AUTO_INSTALLER_GITHUB=https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/
+```
 
 ---
 
 # 🧨 DANGER ZONE
 
-ENABLE_DANGER_ZONE=1 + DANGER_PASS wajib
+`ENABLE_DANGER_ZONE=1` + `DANGER_PASS` wajib
 
 Fitur:
 - Hapus RL-Swarm  
@@ -196,6 +230,7 @@ Only expert ⚠
 
 # 📁 Repo Structure
 
+```
 install.sh  
 reinstall.sh  
 update.sh  
@@ -214,37 +249,46 @@ monitor.service
 monitor.timer  
 
 README.md  
+```
 
 ---
 
 # ✅ Sample Alerts
 
 ✅ UP  
+```
 Node UP  
 CPU 23% • RAM 68% • Disk 50%  
 Round: Join X  
+```
 
 🚨 DOWN  
+```
 DOWN — Restarting…  
+```
 
 🟢 Recovered  
+```
 Recovered  
+```
 
 ❌ FAILED  
+```
 FAILED — manual fix required  
 <logs>  
+```
 
 ---
 
 # ❓ FAQ
 
-Q: Perlu GPU?  
+**Q: Perlu GPU?**  
 A: Tidak  
 
-Q: Aman?  
+**Q: Aman?**  
 A: Tidak kirim data ke server lain  
 
-Q: OS support?  
+**Q: OS support?**  
 A: Ubuntu 20/22/24, Debian 12  
 
 ---
