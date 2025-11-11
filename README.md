@@ -1,298 +1,254 @@
-<!-- BANNER -->
-<p align="center">
-  <img src="https://i.ibb.co/3zxGBM4/GENSYN-BANNER.png" width="90%" />
-</p>
-
-<h1 align="center">⚡ Gensyn RL-Swarm — Auto Installer + Telegram Bot</h1>
+# ⚡ Gensyn RL-Swarm Node + Telegram Control Bot
+### ✅ One-Command Install • Systemd • Auto-Heal • Telegram Panel
 
 <p align="center">
-  One-Click Installer • Telegram Control • Auto-Monitor • Danger Zone
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Gensyn-Testnet-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Telegram-Bot-green?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Auto--Install-YES-orange?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Systemd-Supported-yellow?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Ubuntu-20.04%20%7C%2022.04-purple?style=for-the-badge">
+  Minimal • Cepat • Stabil • CPU-Only
 </p>
 
 ---
 
-## 🧠 Overview
+## 📌 Overview
+Project ini menyediakan:
+1) **Auto-Installer RL-Swarm CPU Node**
+2) **Telegram Control Bot + Auto Monitor + Auto Reinstall**
 
-Bundle ini menyediakan:
-
-✅ Auto-Installer RL-Swarm  
-✅ Telegram Control Menu  
-✅ Auto-Monitor + Auto-Heal  
-✅ Update / Reinstall / Uninstall via Telegram  
-✅ Systemd Service  
-✅ Danger Zone tools  
-
-> Semua bisa dikontrol TANPA SSH — cukup Telegram 📱  
-
-Support VPS: Ubuntu 20/22/24, Debian 12
+Sehingga VPS dapat menjalankan node Gensyn RL-Swarm **tanpa perlu SSH lagi**.
 
 ---
 
-# 🚀 Quick Install
+# ✅ 1) Install RL-Swarm Node
 
-Jalankan:
+> Jalankan:
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/install.sh)
 ```
 
----
+### 📌 Fitur
+✔ Install dependencies  
+✔ Install Docker  
+✔ Clone RL-Swarm repo  
+✔ NEW USER → Auto buka WebUI untuk login  
+✔ EXISTING USER → Langsung jalan  
+✔ Auto create identity  
+✔ Auto-systemd  
+✔ Auto-restart  
+✔ Reinstall / Update / Uninstall  
 
-# 🔑 Identity (WAJIB)
-
-Folder:
-```
-/root/deklan/
-```
-
-Harus berisi:
-```
-swarm.pem
-userApiKey.json
-userData.json
-```
-
-Jika salah satu hilang → INSTALL STOP
-
----
-
-# 📁 Struktur Folder
+### 📂 Struktur Identity
+File credential disimpan di:
 
 ```
 /root/deklan/
-  swarm.pem
-  userApiKey.json
-  userData.json
+│── swarm.pem
+│── userApiKey.json
+└── userData.json
+```
 
-/root/rl_swarm/
-  keys → symlink → /root/deklan/
-  docker-compose.yaml
-  run_node.sh
-  .env
+Symlink otomatis dibuat ke:
+```
+/root/rl-swarm/user/keys → /root/deklan
+```
+
+> NEW USER → file identity otomatis dibuat setelah login UI  
+> EXISTING USER → pastikan file tersimpan di folder di atas  
+
+---
+
+# ✅ 2) Install Telegram Control Bot
+
+> Setelah node ter-install, jalankan:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-node-bot/main/install.sh)
+```
+
+Installer akan:
+✅ Clone repo  
+✅ Buat `.env` (input BOT_TOKEN, CHAT_ID)  
+✅ Setup systemd bot service  
+✅ Setup auto-monitor timer  
+✅ Start bot  
+
+---
+
+# ✅ Cara Pakai Telegram Bot
+
+Ketik:
+```
+/start
+```
+
+Akan muncul menu kendali node:
+
+✅ Status CPU / RAM / Disk / Uptime  
+✅ Last Round  
+✅ Logs realtime  
+✅ Start / Stop / Restart  
+✅ Swap Manager  
+✅ Instalasi remote  
+✅ Danger Zone (opsional + password)
+
+---
+
+## ✅ Commands
+| Command | Fungsi |
+|---------|--------|
+| /start  | Open menu |
+| /status | Resource + uptime |
+| /logs   | Logs |
+| /round  | Last round / progress |
+| /restart | Restart node |
+| /help   | Command info |
+
+---
+
+# ✅ Menu Utama
+
+📊 Status  
+🟢 Start  
+🔴 Stop  
+🔁 Restart  
+📜 Logs  
+ℹ Last Round  
+💾 Swap Manager (16G/32G/64G/Custom)  
+🧩 Installer  
+⚠ Danger Zone (opsional)  
+
+---
+
+# ✅ Installer Menu
+
+Dapat dilakukan langsung via Telegram:
+
+✔ Install  
+✔ Update  
+✔ Reinstall  
+✔ Uninstall  
+
+Flow:
+1) Klik menu
+2) Bot konfirmasi
+3) Balas: `YES`
+4) Bot mengeksekusi
+
+---
+
+# ✅ Auto Monitor (Self-Heal)
+
+Service monitor berjalan otomatis setiap beberapa jam:
+- Cek apakah node UP
+- Jika DOWN → restart
+- Jika tetap gagal → reinstall
+- Kalau gagal juga → kirim log via Telegram
+
+Log detail disertakan agar mudah debug.
+
+Status file:
+```
+/tmp/.node_status.json
 ```
 
 ---
 
-# 🤖 Telegram Bot
+# ✅ Swap Manager
 
-Edit setelah install:
+Preset:
+- 16 GB
+- 32 GB
+- 64 GB
+- Custom (input angka)
 
-```
-nano /opt/deklan-node-bot/.env
-```
-
-Isi minimal:
-```
-BOT_TOKEN=YOUR_TOKEN
-CHAT_ID=123456
-```
-
-Restart bot:
-```
-systemctl restart bot
-```
+Swap akan dibuat ulang otomatis:
+- Update fstab
+- swapon
 
 ---
 
-## ☰ Menu Telegram
+# ✅ Paths Penting
 
-📊 Status — CPU/RAM/Disk/uptime  
-🟢 Start — Start node  
-🔴 Stop — Stop node  
-🔁 Restart — Restart node  
-📜 Logs — Show logs  
-ℹ Round — Last round info  
-🧩 Installer — Install/Update/Reinstall/Uninstall  
-⚠ Danger Zone — Clean + Reboot  
-
----
-
-# 🔧 Installer Menu
-
-Melalui Telegram → Konfirmasi → Ketik `YES`
-
-| Action | Script |
-|--------|--------|
-| Install | install.sh |
-| Reinstall | reinstall.sh |
-| Update | update.sh |
-| Uninstall | uninstall.sh |
+| Resource | Path |
+|----------|------|
+| Identity | `/root/deklan/` |
+| RL-Swarm | `/root/rl-swarm/` |
+| Service | `/etc/systemd/system/gensyn.service` |
+| Bot dir | `/opt/deklan-node-bot` |
+| Bot env | `/opt/deklan-node-bot/.env` |
 
 ---
 
-# 🛰 Auto-Monitor
+# 🔄 Systemd
 
-`monitor.timer` otomatis:
-
-✅ Cek node  
-✅ Restart jika mati  
-✅ Reinstall jika tetap fail  
-✅ Kirim logs ke Telegram  
-
-Status:
-```
-systemctl status monitor.timer
-```
-
----
-
-# ✅ Perintah Sistem
-
-Status:
+## Node
 ```
 systemctl status gensyn
-```
-
-Start:
-```
-systemctl start gensyn
-```
-
-Restart:
-```
 systemctl restart gensyn
-```
-
-Logs:
-```
 journalctl -u gensyn -f
 ```
 
----
-
-# 🔄 Migrasi VPS
-
-Copy folder:
+## Bot
 ```
-/root/deklan/
+systemctl status bot
+journalctl -u bot -f
 ```
 
-Install ulang:
+## Monitor
 ```
-bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/install.sh)
+systemctl status monitor.timer
+systemctl start monitor.service
 ```
-
-Selesai ✅
 
 ---
 
 # ❌ Uninstall
 
+## Node
 ```
-systemctl stop gensyn
-systemctl disable gensyn
-rm -f /etc/systemd/system/gensyn.service
-rm -rf /root/rl_swarm
+bash <(curl -s https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/uninstall.sh)
+```
+
+Identity tetap aman.
+
+## Bot
+```
+systemctl stop bot monitor.service monitor.timer
+systemctl disable bot monitor.service monitor.timer
+rm -f /etc/systemd/system/bot.service
+rm -f /etc/systemd/system/monitor.*
+rm -rf /opt/deklan-node-bot
 systemctl daemon-reload
 ```
 
 ---
 
-# 🧩 ENV Full Options
+# ✅ Backup Identity
+
+> WAJIB DISIMPAN! (jangan dishare!)
 
 ```
-BOT_TOKEN=
-CHAT_ID=
-ALLOWED_USER_IDS=
-SERVICE_NAME=gensyn
-NODE_NAME=Gensyn-VPS
-LOG_LINES=80
-MONITOR_EVERY_MINUTES=180
-ENABLE_DANGER_ZONE=0
-DANGER_PASS=
-AUTO_INSTALLER_GITHUB=https://raw.githubusercontent.com/deklan400/deklan-autoinstall/main/
+/root/deklan/swarm.pem
+/root/deklan/userApiKey.json
+/root/deklan/userData.json
 ```
 
 ---
 
-# 🧨 DANGER ZONE
+# ❗ Notes
 
-`ENABLE_DANGER_ZONE=1` + `DANGER_PASS` wajib
-
-Fitur:
-- Hapus RL-Swarm  
-- Clean Docker  
-- Remove Swap  
-- Full Clean  
-- Reboot VPS  
-
-Only expert ⚠
+✅ CPU-only → ringan  
+✅ Bisa multi-VPS  
+✅ Bisa migrasi VPS cukup pindahkan folder `/root/deklan/`  
+✅ Bot & Node terpisah → modular  
 
 ---
 
-# 📁 Repo Structure
-
-```
-install.sh  
-reinstall.sh  
-update.sh  
-restart.sh  
-uninstall.sh  
-run_node.sh  
-
-bot.py  
-monitor.py  
-requirements.txt  
-.env.example  
-
-gensyn.service  
-bot.service  
-monitor.service  
-monitor.timer  
-
-README.md  
-```
-
----
-
-# ✅ Sample Alerts
-
-✅ UP  
-```
-Node UP  
-CPU 23% • RAM 68% • Disk 50%  
-Round: Join X  
-```
-
-🚨 DOWN  
-```
-DOWN — Restarting…  
-```
-
-🟢 Recovered  
-```
-Recovered  
-```
-
-❌ FAILED  
-```
-FAILED — manual fix required  
-<logs>  
-```
-
----
-
-# ❓ FAQ
-
-**Q: Perlu GPU?**  
-A: Tidak  
-
-**Q: Aman?**  
-A: Tidak kirim data ke server lain  
-
-**Q: OS support?**  
-A: Ubuntu 20/22/24, Debian 12  
+# ✅ Next
+- Multi-Node Visual Dashboard
+- Multi-project helper
+- Remote deploy
+- Auto update bot
 
 ---
 
 # ❤️ Credits
-
-❤️ Built by Deklan × GPT-5
+Built with ❤️ by **Deklan × GPT-5**
